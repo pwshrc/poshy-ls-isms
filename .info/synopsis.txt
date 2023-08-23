@@ -1,0 +1,1 @@
+Convenient functions and aliases for performing directory listings in the style of popular Bash/ZSH aliases for ls.
