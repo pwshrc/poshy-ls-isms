@@ -8,24 +8,28 @@ function Get-ChildItemColorfully {
     | Sort-Object { @((-not $_.PSIsContainer), $_.Name) } `
     | Format-Table
 }
+Export-ModuleMember -Function Get-ChildItemColorfully
 
 function Get-ChildItemColorfullyCramped {
     Get-ChildItem @args `
     | Sort-Object { @((-not $_.PSIsContainer), $_.Name) } `
     | Format-Wide
 }
+Export-ModuleMember -Function Get-ChildItemColorfullyCramped
 
 function Get-ChildItemColorfullyRevealingly {
     Get-ChildItem @args -Hidden `
     | Sort-Object { @((-not $_.PSIsContainer), $_.Name) } `
     | Format-Table
 }
+Export-ModuleMember -Function Get-ChildItemColorfullyRevealingly
 
 function Get-ChildItemColorfullyRevealinglyCramped {
     Get-ChildItem @args -Hidden `
     | Sort-Object { @((-not $_.PSIsContainer), $_.Name) } `
     | Format-Wide
 }
+Export-ModuleMember -Function Get-ChildItemColorfullyRevealinglyCramped
 
 function Get-ChildItemColorfullyRevealinglyRecursivelyWithRecency {
     [DateTimeOffset] $nowish = [DateTimeOffset]::UtcNow
@@ -33,7 +37,7 @@ function Get-ChildItemColorfullyRevealinglyRecursivelyWithRecency {
     | Sort-Object { @((-not $_.PSIsContainer), ($nowish - $_.LastWriteTimeUtc)) } `
     | Format-Wide
 }
-
+Export-ModuleMember -Function Get-ChildItemColorfullyRevealinglyRecursivelyWithRecency
 
 function Get-ChildItemColorfullyRevealinglyRecursively {
     [DateTimeOffset] $nowish = [DateTimeOffset]::UtcNow
@@ -41,7 +45,7 @@ function Get-ChildItemColorfullyRevealinglyRecursively {
     | Sort-Object { @((-not $_.PSIsContainer), $_.Name) } `
     | Format-Wide
 }
-
+Export-ModuleMember -Function Get-ChildItemColorfullyRevealinglyRecursively
 
 function Get-ChildItemColorfullyWithRecency {
     [DateTimeOffset] $nowish = [DateTimeOffset]::UtcNow
@@ -49,6 +53,7 @@ function Get-ChildItemColorfullyWithRecency {
     | Sort-Object { @((-not $_.PSIsContainer), ($nowish - $_.LastWriteTimeUtc)) } `
     | Format-Table
 }
+Export-ModuleMember -Function Get-ChildItemColorfullyWithRecency
 
 function Get-ChildItemColorfullyRevealinglyWithRecency {
     [DateTimeOffset] $nowish = [DateTimeOffset]::UtcNow
@@ -56,6 +61,7 @@ function Get-ChildItemColorfullyRevealinglyWithRecency {
     | Sort-Object { @((-not $_.PSIsContainer), ($nowish - $_.LastWriteTimeUtc)) } `
     | Format-Table
 }
+Export-ModuleMember -Function Get-ChildItemColorfullyRevealinglyWithRecency
 
 # TODO
 # function Get-ChildItemColorfullyRevealinglyWithSize {
@@ -69,6 +75,7 @@ function Get-ChildItemNamesOnly {
     | Sort-Object { @((-not $_.PSIsContainer), $_.Name) } `
     | Select-Object -ExpandProperty Name
 }
+Export-ModuleMember -Function Get-ChildItemNamesOnly
 
 Set-Alias -Name l -Value Get-ChildItemColorfullyCramped
 Set-Alias -Name ls -Value Get-ChildItemColorfully
@@ -89,4 +96,20 @@ Set-Alias l1 -Value Get-ChildItemColorfully
 Set-Alias lf -Value Get-ChildItemColorfully
 
 
-Export-ModuleMember -Function * -Alias *
+Export-ModuleMember -Alias @(
+    "l",
+    "ls",
+    "sl",
+    "ll",
+    "la",
+    "lr",
+    "lt",
+    "ldot",
+    # "lsz",
+    "lart",
+    "lrt",
+    "lsr",
+    "lsn",
+    "l1",
+    "lf"
+)
